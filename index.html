@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Commit Co., Ltd. | ออกแบบระบบ วิจัยข้อมูล Training</title>
+  <meta name="description" content="บริษัท คอมมิท จำกัด ให้บริการออกแบบและพัฒนาระบบ วิจัยและวิเคราะห์ข้อมูล และ Training Course สำหรับองค์กรไทย" />
+  <meta name="keywords" content="ออกแบบระบบ, พัฒนาระบบ, วิจัยข้อมูล, Data Analytics, Training, บริษัท คอมมิท" />
+
+  <!-- Open Graph (Social Share) -->
+  <meta property="og:title"       content="Commit Co., Ltd." />
+  <meta property="og:description" content="ออกแบบระบบ วิจัยข้อมูล และ Training Course สำหรับองค์กร" />
+  <meta property="og:image"       content="img/logo.png" />
+  <meta property="og:type"        content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logo.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Kanit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════════════ -->
+<nav role="navigation" aria-label="Main Navigation">
+  <a href="#" class="logo">
+    <img src="img/logo.png" alt="Commit Co., Ltd." style="height:42px;width:auto;border-radius:8px;" />
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#about">เกี่ยวกับเรา</a></li>
+    <li><a href="#services">บริการ</a></li>
+    <li><a href="#projects">ผลงาน</a></li>
+    <li><a href="#training">Training</a></li>
+    <li><a href="#news">บทความ</a></li>
+  </ul>
+
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+    ติดต่อเรา
+  </button>
+
+  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="mobile-menu" aria-hidden="true">
+  <a href="#about">เกี่ยวกับเรา</a>
+  <a href="#services">บริการ</a>
+  <a href="#projects">ผลงาน</a>
+  <a href="#training">Training</a>
+  <a href="#news">บทความ</a>
+  <a href="#contact">ติดต่อเรา</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════ -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid">
+
+    <div class="hero-content">
+      <div class="hero-label">บริษัท คอมมิท จำกัด</div>
+      <h1 class="hero-title">
+        พัฒนาระบบ<br />
+        วิจัยข้อมูล<br />
+        <span class="accent">เพิ่มศักยภาพคน</span>
+      </h1>
+      <p class="hero-desc">
+        เราช่วยองค์กรเติบโตด้วยบริการครบวงจร ตั้งแต่ออกแบบระบบไอที
+        วิเคราะห์ข้อมูล ไปจนถึงพัฒนาทักษะบุคลากร
+      </p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">บริการของเรา</a>
+        <a href="#contact"  class="btn-outline">ติดต่อเรา</a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-card-wrap">
+        <div class="deco-ring"></div>
+        <div class="hero-card">
+          <div class="hero-card-tag">ผลลัพธ์ที่ผ่านมา</div>
+          <h3>ลูกค้าได้รับ ผลลัพธ์จริง</h3>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-num">50+</span>
+              <span class="stat-lbl">โปรเจกต์ สำเร็จ</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">30+</span>
+              <span class="stat-lbl">ลูกค้า องค์กร</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">500+</span>
+              <span class="stat-lbl">ผู้เข้าฝึก อบรม</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════════════════ -->
+<section id="about" aria-label="About Us">
+  <div class="section-inner">
+    <div class="about-grid">
+
+      <div class="about-img" aria-hidden="true">
+        <div class="about-img-inner">
+          <div class="about-block">
+            <div class="about-block-icon">💻</div>
+            <div class="about-block-txt">System Design &amp; Dev</div>
+          </div>
+          <div class="about-block">
+            <div class="about-block-icon">📊</div>
+            <div class="about-block-txt">Data Research &amp; Analytics</div>
+          </div>
+          <div class="about-block">
+            <div class="about-block-icon">🎓</div>
+            <div class="about-block-txt">Training &amp; Upskilling</div>
+          </div>
+          <div class="about-block">
+            <div class="about-block-icon">🤝</div>
+            <div class="about-block-txt">Expert Consultation</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <div class="sec-label">เกี่ยวกับเรา</div>
+        <h2 class="sec-title">พาร์ทเนอร์ด้านเทคโนโลยีและข้อมูลที่คุณวางใจได้</h2>
+        <p class="about-body">
+          บริษัท คอมมิท จำกัด ให้บริการด้านการออกแบบและพัฒนาระบบ วิจัยและวิเคราะห์ข้อมูล
+          รวมถึงหลักสูตรอบรมเพื่อพัฒนาศักยภาพบุคลากร เราทำงานร่วมกับองค์กรทั้งภาครัฐและเอกชน
+          ด้วยทีมผู้เชี่ยวชาญที่มีประสบการณ์จริง
+        </p>
+        <div class="about-points">
+          <div class="about-point">
+            <div class="point-dot"></div>
+            <span>ทีมผู้เชี่ยวชาญด้านเทคโนโลยีและวิเคราะห์ข้อมูลมืออาชีพ</span>
+          </div>
+          <div class="about-point">
+            <div class="point-dot"></div>
+            <span>ส่งมอบงานตรงเวลา ตรงตามความต้องการ</span>
+          </div>
+          <div class="about-point">
+            <div class="point-dot"></div>
+            <span>บริการหลังการส่งมอบและให้คำปรึกษาต่อเนื่อง</span>
+          </div>
+        </div>
+        <a href="#services" class="btn-primary">ดูบริการทั้งหมด</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════════════════════ -->
+<section id="services" aria-label="Services">
+  <div class="section-inner">
+    <div class="services-header">
+      <div>
+        <div class="sec-label">บริการของเรา</div>
+        <h2 class="sec-title">สิ่งที่เราทำได้ดีที่สุด</h2>
+      </div>
+      <a href="#contact" class="btn-primary">ขอใบเสนอราคา</a>
+    </div>
+
+    <div class="service-cards">
+
+      <article class="service-card">
+        <div class="svc-icon" aria-hidden="true">⚙️</div>
+        <h3 class="svc-title">ออกแบบและพัฒนาระบบ</h3>
+        <p class="svc-desc">
+          วิเคราะห์ความต้องการ ออกแบบ และพัฒนาระบบซอฟต์แวร์ให้เหมาะกับธุรกิจของคุณ
+          ครอบคลุมตั้งแต่เว็บแอปพลิเคชัน ระบบหลังบ้าน ไปจนถึงการเชื่อมต่อ API
+        </p>
+        <div class="svc-tags">
+          <span class="tag">Web Application</span>
+          <span class="tag">System Integration</span>
+          <span class="tag">Database Design</span>
+          <span class="tag">API Development</span>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="svc-icon" aria-hidden="true">🔍</div>
+        <h3 class="svc-title">วิจัยและวิเคราะห์ข้อมูล</h3>
+        <p class="svc-desc">
+          บริการวิจัยเชิงคุณภาพและปริมาณ วิเคราะห์ข้อมูลเชิงลึก สร้างแบบจำลอง
+          และนำเสนอผลลัพธ์ที่นำไปใช้ตัดสินใจได้จริง
+        </p>
+        <div class="svc-tags">
+          <span class="tag">Data Analytics</span>
+          <span class="tag">Research Design</span>
+          <span class="tag">Statistical Analysis</span>
+          <span class="tag">Dashboard &amp; Report</span>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="svc-icon" aria-hidden="true">🎓</div>
+        <h3 class="svc-title">Training Course</h3>
+        <p class="svc-desc">
+          หลักสูตรอบรมเชิงปฏิบัติการสำหรับองค์กร ออกแบบเนื้อหาเฉพาะกลุ่ม
+          พัฒนาทักษะด้านเทคโนโลยี ข้อมูล และการจัดการอย่างมีประสิทธิภาพ
+        </p>
+        <div class="svc-tags">
+          <span class="tag">In-house Training</span>
+          <span class="tag">Data Literacy</span>
+          <span class="tag">Digital Skills</span>
+          <span class="tag">Project Management</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     PROJECTS
+════════════════════════════════════════════════════════ -->
+<section id="projects" aria-label="Projects">
+  <div class="section-inner">
+    <div class="projects-header">
+      <div>
+        <div class="sec-label">ผลงานของเรา</div>
+        <h2 class="sec-title">ตัวอย่างโปรเจกต์</h2>
+        <p class="sec-desc">งานที่เราภูมิใจส่งมอบให้ลูกค้า</p>
+      </div>
+      <a href="#contact" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.3);">
+        ดูผลงานเพิ่มเติม
+      </a>
+    </div>
+
+    <div class="project-grid">
+
+      <article class="project-card">
+        <div class="project-thumb t1" aria-hidden="true">📦</div>
+        <div class="project-body">
+          <div class="project-cat">System Development</div>
+          <h3 class="project-name">ระบบจัดการคลังสินค้าอัจฉริยะ</h3>
+          <p class="project-sub">บริษัทโลจิสติกส์ชั้นนำ</p>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-thumb t2" aria-hidden="true">📊</div>
+        <div class="project-body">
+          <div class="project-cat">Data Research</div>
+          <h3 class="project-name">วิจัยพฤติกรรมผู้บริโภคออนไลน์</h3>
+          <p class="project-sub">ธุรกิจค้าปลีก</p>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-thumb t3" aria-hidden="true">🎓</div>
+        <div class="project-body">
+          <div class="project-cat">Training</div>
+          <h3 class="project-name">หลักสูตร Data-Driven Decision Making</h3>
+          <p class="project-sub">หน่วยงานภาครัฐ 200+ คน</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     TRAINING
+════════════════════════════════════════════════════════ -->
+<section id="training" aria-label="Training Courses">
+  <div class="section-inner">
+    <div class="training-grid">
+
+      <div>
+        <div class="sec-label">Training Courses</div>
+        <h2 class="sec-title">พัฒนาทีมของคุณ<br />ด้วยหลักสูตรที่ออกแบบเฉพาะ</h2>
+        <p class="sec-desc">
+          ออกแบบเนื้อหาตรงตามความต้องการขององค์กร เรียนรู้จากผู้เชี่ยวชาญที่ผ่านงานจริง
+        </p>
+        <div class="course-list">
+          <div class="course-item">
+            <div class="course-num">01</div>
+            <div class="course-info">
+              <div class="course-name">Data Analytics for Business</div>
+              <div class="course-meta">วิเคราะห์ข้อมูลเพื่อการตัดสินใจ • 2 วัน</div>
+            </div>
+          </div>
+          <div class="course-item">
+            <div class="course-num">02</div>
+            <div class="course-info">
+              <div class="course-name">Python for Data Science</div>
+              <div class="course-meta">เขียนโค้ดวิเคราะห์ข้อมูลเชิงปฏิบัติ • 3 วัน</div>
+            </div>
+          </div>
+          <div class="course-item">
+            <div class="course-num">03</div>
+            <div class="course-info">
+              <div class="course-name">Research Methodology</div>
+              <div class="course-meta">การวิจัยและวิธีวิทยาสำหรับองค์กร • 1 วัน</div>
+            </div>
+          </div>
+          <div class="course-item">
+            <div class="course-num">04</div>
+            <div class="course-info">
+              <div class="course-name">System Thinking &amp; Design</div>
+              <div class="course-meta">คิดเชิงระบบและออกแบบกระบวนการ • 2 วัน</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="training-cta-box">
+        <h3>สนใจจัด In-house Training?</h3>
+        <p>เราออกแบบหลักสูตรให้ตรงกับโจทย์ขององค์กรคุณ ทั้งรูปแบบออนไลน์และออฟไลน์</p>
+        <div class="cta-feat">
+          <div class="cta-feat-item"><strong>FORMAT</strong>Online / Onsite</div>
+          <div class="cta-feat-item"><strong>DURATION</strong>1–5 วันต่อหลักสูตร</div>
+          <div class="cta-feat-item"><strong>LANGUAGE</strong>ไทย / English</div>
+          <div class="cta-feat-item"><strong>MATERIAL</strong>เอกสารครบชุด</div>
+        </div>
+        <a href="#contact" class="btn-white">ขอหลักสูตรเฉพาะองค์กร</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     NEWS
+════════════════════════════════════════════════════════ -->
+<section id="news" aria-label="News and Articles">
+  <div class="section-inner">
+    <div class="news-header">
+      <div>
+        <div class="sec-label">บทความ</div>
+        <h2 class="sec-title">ข่าวสารและบทความ</h2>
+      </div>
+      <a href="#" class="news-all-link">ดูทั้งหมด →</a>
+    </div>
+
+    <div class="news-grid">
+
+      <article class="news-card">
+        <div class="news-thumb n1" aria-hidden="true">
+          📈
+          <div class="news-date">มี.ค. 2025</div>
+        </div>
+        <div class="news-body">
+          <div class="news-cat">Data Analytics</div>
+          <h3 class="news-title">5 เทคนิควิเคราะห์ข้อมูลที่ธุรกิจ SME นำไปใช้ได้เลย</h3>
+          <p class="news-excerpt">การวิเคราะห์ข้อมูลไม่ใช่เรื่องของบริษัทขนาดใหญ่เท่านั้น...</p>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-thumb n2" aria-hidden="true">
+          🤖
+          <div class="news-date">ก.พ. 2025</div>
+        </div>
+        <div class="news-body">
+          <div class="news-cat">System Development</div>
+          <h3 class="news-title">เลือก Tech Stack อย่างไรให้เหมาะกับโปรเจกต์ของคุณ</h3>
+          <p class="news-excerpt">ก่อนจะเริ่มพัฒนาระบบ การเลือกเทคโนโลยีที่ถูกต้องมีผลอย่างมากต่อความสำเร็จ...</p>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-thumb n3" aria-hidden="true">
+          🎯
+          <div class="news-date">ม.ค. 2025</div>
+        </div>
+        <div class="news-body">
+          <div class="news-cat">Training</div>
+          <h3 class="news-title">ทำไมองค์กรจึงควรลงทุนกับ Data Literacy ของพนักงาน</h3>
+          <p class="news-excerpt">ในยุคที่ข้อมูลคือสินทรัพย์ การทำให้พนักงานทุกระดับอ่านข้อมูลเป็น...</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     CTA BAND
+════════════════════════════════════════════════════════ -->
+<section id="cta-band" aria-label="Call to Action">
+  <h2>พร้อมเริ่มต้นโปรเจกต์กับเรา?</h2>
+  <p>ปรึกษาฟรี ไม่มีข้อผูกมัด ทีมงานพร้อมตอบทุกคำถาม</p>
+  <div class="cta-band-btns">
+    <a href="mailto:info@commit.co.th" class="btn-white">📧 ส่งอีเมลหาเรา</a>
+    <a href="tel:020000000"            class="btn-ghost">📞 โทรปรึกษา</a>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<footer id="contact" aria-label="Footer and Contact">
+  <div class="footer-grid">
+
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <img src="img/logo.png" alt="Commit Co., Ltd." style="height:46px;width:auto;border-radius:8px;" />
+      </a>
+      <p>บริการออกแบบระบบ วิจัยข้อมูล และพัฒนาบุคลากรสำหรับองค์กรไทย</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn" aria-label="Facebook">📘</a>
+        <a href="#" class="social-btn" aria-label="LinkedIn">💼</a>
+        <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>บริการ</h4>
+      <ul>
+        <li><a href="#services">ออกแบบและพัฒนาระบบ</a></li>
+        <li><a href="#services">วิจัยและวิเคราะห์ข้อมูล</a></li>
+        <li><a href="#training">Training Courses</a></li>
+        <li><a href="#services">ให้คำปรึกษา</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>บริษัท</h4>
+      <ul>
+        <li><a href="#about">เกี่ยวกับเรา</a></li>
+        <li><a href="#projects">ผลงาน</a></li>
+        <li><a href="#news">บทความ</a></li>
+        <li><a href="#contact">ติดต่อเรา</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>ติดต่อเรา</h4>
+      <div class="footer-contact-item">
+        <span class="contact-icon">📍</span>
+        <span class="contact-text">กรุงเทพมหานคร ประเทศไทย</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="contact-icon">📞</span>
+        <span class="contact-text">09 1453 9565</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="contact-icon">✉️</span>
+        <span class="contact-text">info@icommittech.com</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="contact-icon">🕐</span>
+        <span class="contact-text">จ–ศ 8:30–17:30 น.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 บริษัท คอมมิท จำกัด. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">นโยบายความเป็นส่วนตัว</a>
+      <a href="#">ข้อกำหนดการใช้งาน</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- JavaScript -->
+<script src="js/main.js"></script>
+</body>
+</html>
