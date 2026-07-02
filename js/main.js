@@ -5,6 +5,9 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  var hamburger  = document.querySelector('.hamburger');
+  var mobileMenu = document.querySelector('.mobile-menu');
+
   /* ── 0. HERO SLIDER ───────────────────────────────── */
   (function () {
     var slides   = document.querySelectorAll('.hero-slide');
@@ -67,19 +70,21 @@ document.addEventListener('DOMContentLoaded', function () {
       }, { passive: true });
     }
 
+    goTo(0);
     startAutoplay();
   })();
 
   /* ── 1. SMOOTH SCROLL ─────────────────────────────── */
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
-      var target = document.querySelector(this.getAttribute('href'));
+      var href = this.getAttribute('href');
+      if (!href || href === '#') return;
+      var target = document.querySelector(href);
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth' });
-        // Close mobile menu if open
-        mobileMenu.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
+        if (mobileMenu) mobileMenu.classList.remove('open');
+        if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
       }
     });
   });
@@ -97,9 +102,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ── 3. HAMBURGER MOBILE MENU ─────────────────────── */
-  var hamburger  = document.querySelector('.hamburger');
-  var mobileMenu = document.querySelector('.mobile-menu');
-
   if (hamburger && mobileMenu) {
     hamburger.addEventListener('click', function () {
       var isOpen = mobileMenu.classList.toggle('open');
