@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ลงทะเบียน | Digital Hospital Forum 2026 — Commit Co., Ltd.</title>
+  <meta name="description" content="ลงทะเบียนเข้าร่วม Digital Hospital Forum 2026 การประชุมวิชาการเพื่อโรงพยาบาล เขตสุขภาพที่ 5 วันที่ 13–14 สิงหาคม 2569" />
+  <link rel="icon" type="image/png" href="img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Kanit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
+</head>
+<body class="register-page">
+
+<nav role="navigation" aria-label="Main Navigation">
+  <a href="index.html" class="logo">
+    <img src="img/logo.png" alt="Commit Co., Ltd." style="height:42px;width:auto;border-radius:8px;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">เกี่ยวกับเรา</a></li>
+    <li><a href="index.html#services">บริการ</a></li>
+    <li><a href="index.html#training">Training</a></li>
+    <li><a href="register.html" class="active">ลงทะเบียนประชุม</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta" style="text-decoration:none;display:inline-flex;align-items:center;">ติดต่อเรา</a>
+  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" aria-hidden="true">
+  <a href="index.html#about">เกี่ยวกับเรา</a>
+  <a href="index.html#services">บริการ</a>
+  <a href="index.html#training">Training</a>
+  <a href="register.html">ลงทะเบียนประชุม</a>
+  <a href="index.html#contact">ติดต่อเรา</a>
+</div>
+
+<main class="register-main">
+  <div class="register-hero">
+    <div class="sec-label">Digital Hospital Forum 2026</div>
+    <h1 class="register-title">ลงทะเบียนเข้าร่วมประชุม</h1>
+    <p class="register-subtitle">
+      การประชุมวิชาการเพื่อโรงพยาบาล เขตสุขภาพที่ 5<br />
+      <strong>13–14 สิงหาคม 2569</strong> ณ สปริงฟิลด์วิลเลจ กอล์ฟ แอนด์สปา อ.ชะอำ จ.เพชรบุรี
+    </p>
+  </div>
+
+  <div id="formSuccess" class="form-alert form-alert--success" hidden>
+    <div class="form-alert-icon">✓</div>
+    <h2>ลงทะเบียนสำเร็จ</h2>
+    <p>ขอบคุณที่ลงทะเบียนเข้าร่วม Digital Hospital Forum 2026 ทีมงานจะติดต่อกลับทางอีเมลหรือเบอร์โทรที่ระบุไว้</p>
+    <p class="form-alert-note">📌 กรุณานำ Notebook มาร่วมกิจกรรม</p>
+    <a href="index.html" class="btn-primary">กลับหน้าหลัก</a>
+  </div>
+
+  <div id="formError" class="form-alert form-alert--error" hidden role="alert"></div>
+
+  <form id="registerForm" class="form-card" novalidate>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="full_name">ชื่อ-นามสกุล <span class="req">*</span></label>
+        <input type="text" id="full_name" name="full_name" class="form-input" required autocomplete="name" placeholder="เช่น สมชาย ใจดี" />
+      </div>
+      <div class="form-group">
+        <label for="email">อีเมล <span class="req">*</span></label>
+        <input type="email" id="email" name="email" class="form-input" required autocomplete="email" placeholder="name@hospital.go.th" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="phone">เบอร์โทรศัพท์ <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" class="form-input" required autocomplete="tel" placeholder="08x-xxx-xxxx" />
+      </div>
+      <div class="form-group">
+        <label for="organization">หน่วยงาน / โรงพยาบาล <span class="req">*</span></label>
+        <input type="text" id="organization" name="organization" class="form-input" required placeholder="ชื่อหน่วยงานหรือโรงพยาบาล" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="position">ตำแหน่ง</label>
+      <input type="text" id="position" name="position" class="form-input" placeholder="เช่น หัวหน้างานเวชระเบียน" />
+    </div>
+
+    <div class="form-group">
+      <label for="attendance_days">วันที่เข้าร่วม <span class="req">*</span></label>
+      <select id="attendance_days" name="attendance_days" class="form-input" required>
+        <option value="">— เลือกวันที่ —</option>
+        <option value="both">ทั้ง 2 วัน (13–14 ส.ค. 2569)</option>
+        <option value="day1">วันที่ 1 — 13 ส.ค. 2569 (ยกระดับโครงสร้างพื้นฐาน)</option>
+        <option value="day2">วันที่ 2 — 14 ส.ค. 2569 (การกำกับดูแล)</option>
+      </select>
+    </div>
+
+    <div class="form-group form-check">
+      <label class="form-check-label">
+        <input type="checkbox" id="bring_notebook" name="bring_notebook" checked />
+        <span>ยืนยันว่าจะนำ <strong>Notebook</strong> มาร่วมกิจกรรม</span>
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="notes">หมายเหตุเพิ่มเติม</label>
+      <textarea id="notes" name="notes" class="form-input form-textarea" rows="3" placeholder="ข้อมูลเพิ่มเติม (ถ้ามี)"></textarea>
+    </div>
+
+    <div class="form-footer">
+      <button type="submit" id="submitBtn" class="btn-primary btn-submit">ส่งการลงทะเบียน</button>
+      <p class="form-privacy">ข้อมูลของท่านจะถูกเก็บอย่างปลอดภัยและใช้เพื่อการจัดงานเท่านั้น</p>
+    </div>
+  </form>
+</main>
+
+<footer class="register-footer">
+  <p>© 2025 บริษัท คอมมิท จำกัด · <a href="index.html">กลับหน้าหลัก</a></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/register.js"></script>
+</body>
+</html>

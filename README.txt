@@ -39,4 +39,20 @@ commit-website/
 - แก้ไขข้อมูลติดต่อได้ที่ index.html ส่วน FOOTER
   เช่น เบอร์โทร, อีเมล, ที่อยู่
 
+ลงทะเบียน Forum (Supabase)
+---------------------------
+1. เปิด Supabase Dashboard → SQL Editor
+2. รันไฟล์ supabase/setup_forum_registrations.sql
+3. แก้ไข js/config.js ใส่ SUPABASE_URL และ SUPABASE_ANON_KEY
+   (หาได้ที่ Project Settings → API)
+4. เปิดหน้า register.html เพื่อทดสอบฟอร์ม
+5. ดูข้อมูลลงทะเบียนได้ที่ Table Editor → forum_registrations
+
+หน้า Admin
+----------
+1. รันไฟล์ supabase/admin_rls_policy.sql (แก้ email admin ในไฟล์ก่อน)
+2. สร้าง user admin: Dashboard → Authentication → Users → Add user
+3. เปิด admin.html → login → ดูรายชื่อ + Export Excel
+4. ไม่ใส่ลิงก์ admin ในเมนูหลัก (เก็บ URL เป็นความลับ)
+
 =========================================

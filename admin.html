@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin — รายชื่อลงทะเบียน Forum 2026</title>
+  <link rel="icon" type="image/png" href="img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Kanit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
+</head>
+<body class="admin-page">
+
+<header class="admin-header">
+  <div class="admin-header-inner">
+    <a href="index.html" class="admin-logo">
+      <img src="img/logo.png" alt="Commit" style="height:36px;border-radius:6px;" />
+      <span>Admin Panel</span>
+    </a>
+    <div id="adminUserBar" class="admin-user-bar" hidden>
+      <span id="adminEmail"></span>
+      <button type="button" id="logoutBtn" class="btn-admin-outline">ออกจากระบบ</button>
+    </div>
+  </div>
+</header>
+
+<main class="admin-main">
+
+  <!-- Login -->
+  <section id="loginSection" class="admin-login-wrap">
+    <div class="form-card admin-login-card">
+      <div class="sec-label">Digital Hospital Forum 2026</div>
+      <h1 class="register-title" style="text-align:left;margin-bottom:8px;">เข้าสู่ระบบ Admin</h1>
+      <p class="register-subtitle" style="text-align:left;margin-bottom:24px;">ดูรายชื่อผู้ลงทะเบียนและ Export Excel</p>
+      <div id="loginError" class="form-alert form-alert--error" hidden role="alert"></div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="admin_email">อีเมล</label>
+          <input type="email" id="admin_email" name="email" class="form-input" required autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label for="admin_password">รหัสผ่าน</label>
+          <input type="password" id="admin_password" name="password" class="form-input" required autocomplete="current-password" />
+        </div>
+        <button type="submit" id="loginBtn" class="btn-primary btn-submit">เข้าสู่ระบบ</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Dashboard -->
+  <section id="dashboardSection" hidden>
+    <div class="admin-top">
+      <div>
+        <h1 class="admin-page-title">รายชื่อลงทะเบียน</h1>
+        <p class="admin-page-sub">Digital Hospital Forum 2026 · อัปเดตล่าสุด <span id="lastRefresh">—</span></p>
+      </div>
+      <div class="admin-actions">
+        <button type="button" id="refreshBtn" class="btn-admin-outline">↻ รีเฟรช</button>
+        <button type="button" id="exportBtn" class="btn-primary">⬇ Export Excel</button>
+      </div>
+    </div>
+
+    <div class="admin-stats">
+      <div class="admin-stat-card">
+        <span class="admin-stat-num" id="statTotal">0</span>
+        <span class="admin-stat-lbl">ลงทะเบียนทั้งหมด</span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-num" id="statBoth">0</span>
+        <span class="admin-stat-lbl">ทั้ง 2 วัน</span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-num" id="statDay1">0</span>
+        <span class="admin-stat-lbl">วันที่ 1 (13 ส.ค.)</span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-num" id="statDay2">0</span>
+        <span class="admin-stat-lbl">วันที่ 2 (14 ส.ค.)</span>
+      </div>
+    </div>
+
+    <div class="admin-toolbar">
+      <input type="search" id="searchInput" class="form-input admin-search" placeholder="ค้นหา ชื่อ, อีเมล, หน่วยงาน..." />
+    </div>
+
+    <div id="loadError" class="form-alert form-alert--error" hidden role="alert"></div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table" id="regTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>วันที่ลงทะเบียน</th>
+            <th>ชื่อ-นามสกุล</th>
+            <th>อีเมล</th>
+            <th>เบอร์โทร</th>
+            <th>หน่วยงาน</th>
+            <th>ตำแหน่ง</th>
+            <th>วันเข้าร่วม</th>
+            <th>Notebook</th>
+            <th>หมายเหตุ</th>
+          </tr>
+        </thead>
+        <tbody id="regTableBody">
+          <tr><td colspan="10" class="admin-empty">กำลังโหลด...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="admin-table-count" id="tableCount"></p>
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
