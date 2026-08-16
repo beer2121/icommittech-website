@@ -647,6 +647,7 @@ footer { background: var(--navy); padding: 60px 6% 30px; }
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 16px; margin-bottom: 24px;
 }
+.admin-stats[hidden] { display: none !important; }
 .admin-stat-card {
   background: #fff; border: 1.5px solid var(--border); border-radius: 12px;
   padding: 20px 16px; text-align: center;
