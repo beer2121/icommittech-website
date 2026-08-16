@@ -1,5 +1,5 @@
 /* ============================================================
-   Admin — Login, view registrations, export Excel
+   Admin — Forum + Trial registrations, export Excel
    ============================================================ */
 
 (function () {
@@ -13,14 +13,20 @@
   var refreshBtn       = document.getElementById('refreshBtn');
   var exportBtn        = document.getElementById('exportBtn');
   var searchInput      = document.getElementById('searchInput');
+  var regTableHead     = document.getElementById('regTableHead');
   var regTableBody     = document.getElementById('regTableBody');
   var adminUserBar     = document.getElementById('adminUserBar');
   var adminEmailEl     = document.getElementById('adminEmail');
   var lastRefreshEl    = document.getElementById('lastRefresh');
   var tableCountEl     = document.getElementById('tableCount');
+  var pageTitle        = document.getElementById('pageTitle');
+  var pageSubtitle     = document.getElementById('pageSubtitle');
+  var forumStats       = document.getElementById('forumStats');
+  var trialStats       = document.getElementById('trialStats');
 
   var allRows = [];
   var client  = null;
+  var activeTab = 'forum';
 
   var ATTENDANCE_LABELS = {
     both: 'ทั้ง 2 วัน',
@@ -51,8 +57,7 @@
 
   function formatDate(iso) {
     if (!iso) return '—';
-    var d = new Date(iso);
-    return d.toLocaleString('th-TH', {
+    return new Date(iso).toLocaleString('th-TH', {
       year: 'numeric', month: 'short', day: 'numeric',
       hour: '2-digit', minute: '2-digit'
     });
@@ -82,11 +87,44 @@
     loadError.hidden = true;
   }
 
-  function updateStats(rows) {
+  function setTab(tab) {
+    activeTab = tab;
+    document.querySelectorAll('.admin-tab').forEach(function (btn) {
+      var on = btn.getAttribute('data-tab') === tab;
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    forumStats.hidden = tab !== 'forum';
+    trialStats.hidden = tab !== 'trial';
+    if (tab === 'forum') {
+      pageTitle.textContent = 'รายชื่อลงทะเบียน Forum';
+      pageSubtitle.textContent = 'Digital Hospital Forum 2026';
+    } else {
+      pageTitle.textContent = 'คำขอทดลองใช้งาน';
+      pageSubtitle.textContent = 'Trial Program Registration';
+    }
+    if (searchInput) searchInput.value = '';
+    loadRegistrations();
+  }
+
+  function updateForumStats(rows) {
     document.getElementById('statTotal').textContent = rows.length;
     document.getElementById('statBoth').textContent = rows.filter(function (r) { return r.attendance_days === 'both'; }).length;
     document.getElementById('statDay1').textContent = rows.filter(function (r) { return r.attendance_days === 'day1'; }).length;
     document.getElementById('statDay2').textContent = rows.filter(function (r) { return r.attendance_days === 'day2'; }).length;
+  }
+
+  function updateTrialStats(rows) {
+    document.getElementById('trialStatTotal').textContent = rows.length;
+    document.getElementById('trialStatUrgent').textContent = rows.filter(function (r) {
+      return r.urgency && r.urgency.indexOf('เร่งด่วนมาก') === 0;
+    }).length;
+    document.getElementById('trialStatClaim').textContent = rows.filter(function (r) {
+      return r.product_interest === 'ตรวจสอบเวชระเบียน';
+    }).length;
+    document.getElementById('trialStatIcd').textContent = rows.filter(function (r) {
+      return r.product_interest && r.product_interest.indexOf('ICD') !== -1;
+    }).length;
   }
 
   function filterRows(query) {
@@ -96,11 +134,15 @@
       return (r.full_name && r.full_name.toLowerCase().indexOf(q) !== -1) ||
         (r.email && r.email.toLowerCase().indexOf(q) !== -1) ||
         (r.organization && r.organization.toLowerCase().indexOf(q) !== -1) ||
-        (r.phone && r.phone.indexOf(q) !== -1);
+        (r.phone && r.phone.indexOf(q) !== -1) ||
+        (r.hospital_code && r.hospital_code.toLowerCase().indexOf(q) !== -1);
     });
   }
 
-  function renderTable(rows) {
+  function renderForumTable(rows) {
+    regTableHead.innerHTML = '<tr>' +
+      '<th>#</th><th>วันที่ลงทะเบียน</th><th>ชื่อ-นามสกุล</th><th>อีเมล</th><th>เบอร์โทร</th>' +
+      '<th>หน่วยงาน</th><th>ตำแหน่ง</th><th>วันเข้าร่วม</th><th>Notebook</th><th>หมายเหตุ</th></tr>';
     if (!rows.length) {
       regTableBody.innerHTML = '<tr><td colspan="10" class="admin-empty">ไม่พบข้อมูล</td></tr>';
       tableCountEl.textContent = 'แสดง 0 รายการ';
@@ -123,12 +165,56 @@
     tableCountEl.textContent = 'แสดง ' + rows.length + ' รายการ';
   }
 
+  function renderTrialTable(rows) {
+    regTableHead.innerHTML = '<tr>' +
+      '<th>#</th><th>วันที่ส่ง</th><th>หน่วยงาน</th><th>รหัส รพ.</th><th>ผู้ติดต่อ</th>' +
+      '<th>อีเมล</th><th>เบอร์โทร</th><th>ประเภท</th><th>โปรแกรม</th><th>ความเร่งด่วน</th><th>ช่องทาง</th><th>หมายเหตุ</th></tr>';
+    if (!rows.length) {
+      regTableBody.innerHTML = '<tr><td colspan="12" class="admin-empty">ไม่พบข้อมูล</td></tr>';
+      tableCountEl.textContent = 'แสดง 0 รายการ';
+      return;
+    }
+    regTableBody.innerHTML = rows.map(function (r, i) {
+      var biz = r.business_type === 'อื่น ๆ' && r.business_type_other
+        ? r.business_type + ' (' + r.business_type_other + ')'
+        : r.business_type;
+      var product = r.product_interest === 'Other' && r.product_interest_other
+        ? r.product_interest_other
+        : r.product_interest;
+      var source = r.referral_source === 'Other' && r.referral_source_other
+        ? r.referral_source_other
+        : r.referral_source;
+      return '<tr>' +
+        '<td>' + (i + 1) + '</td>' +
+        '<td>' + escapeHtml(formatDate(r.created_at)) + '</td>' +
+        '<td>' + escapeHtml(r.organization) + '</td>' +
+        '<td>' + escapeHtml(r.hospital_code) + '</td>' +
+        '<td>' + escapeHtml(r.full_name) + '</td>' +
+        '<td>' + escapeHtml(r.email) + '</td>' +
+        '<td>' + escapeHtml(r.phone) + '</td>' +
+        '<td>' + escapeHtml(biz || '—') + '</td>' +
+        '<td>' + escapeHtml(product || '—') + '</td>' +
+        '<td>' + escapeHtml(r.urgency || '—') + '</td>' +
+        '<td>' + escapeHtml(source || '—') + '</td>' +
+        '<td>' + escapeHtml(r.notes || '—') + '</td>' +
+        '</tr>';
+    }).join('');
+    tableCountEl.textContent = 'แสดง ' + rows.length + ' รายการ';
+  }
+
+  function renderTable(rows) {
+    if (activeTab === 'trial') renderTrialTable(rows);
+    else renderForumTable(rows);
+  }
+
   function loadRegistrations() {
     loadError.hidden = true;
-    regTableBody.innerHTML = '<tr><td colspan="10" class="admin-empty">กำลังโหลด...</td></tr>';
+    var colCount = activeTab === 'trial' ? 12 : 10;
+    regTableBody.innerHTML = '<tr><td colspan="' + colCount + '" class="admin-empty">กำลังโหลด...</td></tr>';
+    var table = activeTab === 'trial' ? 'trial_registrations' : 'forum_registrations';
 
     getClient()
-      .from('forum_registrations')
+      .from(table)
       .select('*')
       .order('created_at', { ascending: false })
       .then(function (result) {
@@ -139,11 +225,12 @@
             return;
           }
           showLoadError(result.error.message || 'ไม่สามารถโหลดข้อมูลได้ — ตรวจสอบ RLS policy และอีเมล admin');
-          regTableBody.innerHTML = '<tr><td colspan="10" class="admin-empty">โหลดไม่สำเร็จ</td></tr>';
+          regTableBody.innerHTML = '<tr><td colspan="' + colCount + '" class="admin-empty">โหลดไม่สำเร็จ</td></tr>';
           return;
         }
         allRows = result.data || [];
-        updateStats(allRows);
+        if (activeTab === 'trial') updateTrialStats(allRows);
+        else updateForumStats(allRows);
         renderTable(filterRows(searchInput ? searchInput.value : ''));
         lastRefreshEl.textContent = new Date().toLocaleString('th-TH');
       });
@@ -160,30 +247,55 @@
       return;
     }
 
-    var sheetData = rows.map(function (r, i) {
-      return {
-        'ลำดับ': i + 1,
-        'วันที่ลงทะเบียน': formatDate(r.created_at),
-        'ชื่อ-นามสกุล': r.full_name,
-        'อีเมล': r.email,
-        'เบอร์โทร': r.phone,
-        'หน่วยงาน': r.organization,
-        'ตำแหน่ง': r.position || '',
-        'วันเข้าร่วม': ATTENDANCE_LABELS[r.attendance_days] || r.attendance_days,
-        'นำ Notebook': r.bring_notebook ? 'ใช่' : 'ไม่',
-        'หมายเหตุ': r.notes || '',
-        'งาน': r.event_name || ''
-      };
-    });
+    var sheetData;
+    var sheetName;
+    var filename;
+
+    if (activeTab === 'trial') {
+      sheetName = 'ทดลองใช้งาน';
+      filename = 'trial_registrations_' + new Date().toISOString().slice(0, 10) + '.xlsx';
+      sheetData = rows.map(function (r, i) {
+        return {
+          'ลำดับ': i + 1,
+          'วันที่ส่ง': formatDate(r.created_at),
+          'หน่วยงาน': r.organization,
+          'รหัสโรงพยาบาล': r.hospital_code,
+          'ผู้ติดต่อ': r.full_name,
+          'อีเมล': r.email,
+          'เบอร์โทร': r.phone,
+          'ประเภทธุรกิจ': r.business_type,
+          'ประเภทอื่นๆ': r.business_type_other || '',
+          'โปรแกรมที่สนใจ': r.product_interest,
+          'โปรแกรมอื่นๆ': r.product_interest_other || '',
+          'ความเร่งด่วน': r.urgency,
+          'ช่องทางรู้จัก': r.referral_source,
+          'ช่องทางอื่นๆ': r.referral_source_other || '',
+          'หมายเหตุ': r.notes || ''
+        };
+      });
+    } else {
+      sheetName = 'ลงทะเบียน Forum';
+      filename = 'forum_registrations_' + new Date().toISOString().slice(0, 10) + '.xlsx';
+      sheetData = rows.map(function (r, i) {
+        return {
+          'ลำดับ': i + 1,
+          'วันที่ลงทะเบียน': formatDate(r.created_at),
+          'ชื่อ-นามสกุล': r.full_name,
+          'อีเมล': r.email,
+          'เบอร์โทร': r.phone,
+          'หน่วยงาน': r.organization,
+          'ตำแหน่ง': r.position || '',
+          'วันเข้าร่วม': ATTENDANCE_LABELS[r.attendance_days] || r.attendance_days,
+          'นำ Notebook': r.bring_notebook ? 'ใช่' : 'ไม่',
+          'หมายเหตุ': r.notes || '',
+          'งาน': r.event_name || ''
+        };
+      });
+    }
 
     var ws = XLSX.utils.json_to_sheet(sheetData);
-    ws['!cols'] = [
-      { wch: 6 }, { wch: 20 }, { wch: 22 }, { wch: 28 }, { wch: 14 },
-      { wch: 28 }, { wch: 20 }, { wch: 22 }, { wch: 12 }, { wch: 24 }, { wch: 28 }
-    ];
     var wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'ลงทะเบียน Forum');
-    var filename = 'forum_registrations_' + new Date().toISOString().slice(0, 10) + '.xlsx';
+    XLSX.utils.book_append_sheet(wb, ws, sheetName);
     XLSX.writeFile(wb, filename);
   }
 
@@ -206,27 +318,25 @@
       loginBtn.disabled = true;
       loginBtn.textContent = 'กำลังเข้าสู่ระบบ...';
 
-      var email = loginForm.email.value.trim();
-      var password = loginForm.password.value;
-
-      getClient().auth.signInWithPassword({ email: email, password: password })
-        .then(function (res) {
-          loginBtn.disabled = false;
-          loginBtn.textContent = 'เข้าสู่ระบบ';
-          if (res.error) {
-            showLoginError(res.error.message === 'Invalid login credentials'
-              ? 'อีเมลหรือรหัสผ่านไม่ถูกต้อง'
-              : res.error.message);
-            return;
-          }
-          showDashboard(res.data.user.email);
-          loadRegistrations();
-        })
-        .catch(function () {
-          loginBtn.disabled = false;
-          loginBtn.textContent = 'เข้าสู่ระบบ';
-          showLoginError('ไม่สามารถเชื่อมต่อได้');
-        });
+      getClient().auth.signInWithPassword({
+        email: loginForm.email.value.trim(),
+        password: loginForm.password.value
+      }).then(function (res) {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'เข้าสู่ระบบ';
+        if (res.error) {
+          showLoginError(res.error.message === 'Invalid login credentials'
+            ? 'อีเมลหรือรหัสผ่านไม่ถูกต้อง'
+            : res.error.message);
+          return;
+        }
+        showDashboard(res.data.user.email);
+        loadRegistrations();
+      }).catch(function () {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'เข้าสู่ระบบ';
+        showLoginError('ไม่สามารถเชื่อมต่อได้');
+      });
     });
   }
 
@@ -240,9 +350,14 @@
     });
   }
 
+  document.querySelectorAll('.admin-tab').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      setTab(btn.getAttribute('data-tab'));
+    });
+  });
+
   if (refreshBtn) refreshBtn.addEventListener('click', loadRegistrations);
   if (exportBtn) exportBtn.addEventListener('click', exportExcel);
-
   if (searchInput) {
     searchInput.addEventListener('input', function () {
       renderTable(filterRows(searchInput.value));

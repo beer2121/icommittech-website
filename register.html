@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Kanit:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=3" />
+  <link rel="stylesheet" href="css/style.css?v=5" />
 </head>
 <body class="register-page">
 
@@ -21,7 +21,6 @@
     <li><a href="index.html#about">เกี่ยวกับเรา</a></li>
     <li><a href="index.html#services">บริการ</a></li>
     <li><a href="index.html#training">Training</a></li>
-    <li><a href="register.html" class="active">ลงทะเบียนประชุม</a></li>
   </ul>
   <a href="index.html#contact" class="nav-cta" style="text-decoration:none;display:inline-flex;align-items:center;">ติดต่อเรา</a>
   <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" tabindex="0">
@@ -33,18 +32,27 @@
   <a href="index.html#about">เกี่ยวกับเรา</a>
   <a href="index.html#services">บริการ</a>
   <a href="index.html#training">Training</a>
-  <a href="register.html">ลงทะเบียนประชุม</a>
   <a href="index.html#contact">ติดต่อเรา</a>
 </div>
 
 <main class="register-main">
   <div class="register-hero">
     <div class="sec-label">Digital Hospital Forum 2026</div>
-    <h1 class="register-title">ลงทะเบียนเข้าร่วมประชุม</h1>
+    <h1 class="register-title">ปิดรับลงทะเบียนชั่วคราว</h1>
     <p class="register-subtitle">
       การประชุมวิชาการเพื่อโรงพยาบาล เขตสุขภาพที่ 5<br />
       <strong>13–14 สิงหาคม 2569</strong> ณ สปริงฟิลด์วิลเลจ กอล์ฟ แอนด์สปา อ.ชะอำ จ.เพชรบุรี
     </p>
+  </div>
+
+  <div class="form-alert form-alert--closed">
+    <div class="form-alert-icon form-alert-icon--closed">!</div>
+    <h2>ยังไม่เปิดรับลงทะเบียน</h2>
+    <p>ขณะนี้ปิดรับลงทะเบียนเข้าร่วมประชุมชั่วคราว หากต้องการสอบถามข้อมูลเพิ่มเติม กรุณาติดต่อทีมงาน</p>
+    <div class="hero-btns" style="justify-content:center;margin-top:20px;">
+      <a href="index.html#contact" class="btn-primary">ติดต่อเรา</a>
+      <a href="index.html" class="btn-outline" style="color:var(--navy);border-color:var(--border);">กลับหน้าหลัก</a>
+    </div>
   </div>
 
   <div id="formSuccess" class="form-alert form-alert--success" hidden>
@@ -57,7 +65,7 @@
 
   <div id="formError" class="form-alert form-alert--error" hidden role="alert"></div>
 
-  <form id="registerForm" class="form-card" novalidate>
+  <form id="registerForm" class="form-card" hidden novalidate>
     <div class="form-row">
       <div class="form-group">
         <label for="full_name">ชื่อ-นามสกุล <span class="req">*</span></label>

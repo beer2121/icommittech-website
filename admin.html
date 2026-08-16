@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Admin — รายชื่อลงทะเบียน Forum 2026</title>
+  <title>Admin — รายชื่อลงทะเบียน</title>
   <link rel="icon" type="image/png" href="img/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Kanit:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=4" />
+  <link rel="stylesheet" href="css/style.css?v=6" />
 </head>
 <body class="admin-page">
 
@@ -28,10 +28,9 @@
 
 <main class="admin-main">
 
-  <!-- Login -->
   <section id="loginSection" class="admin-login-wrap">
     <div class="form-card admin-login-card">
-      <div class="sec-label">Digital Hospital Forum 2026</div>
+      <div class="sec-label">Commit Co., Ltd.</div>
       <h1 class="register-title" style="text-align:left;margin-bottom:8px;">เข้าสู่ระบบ Admin</h1>
       <p class="register-subtitle" style="text-align:left;margin-bottom:24px;">ดูรายชื่อผู้ลงทะเบียนและ Export Excel</p>
       <div id="loginError" class="form-alert form-alert--error" hidden role="alert"></div>
@@ -49,12 +48,11 @@
     </div>
   </section>
 
-  <!-- Dashboard -->
   <section id="dashboardSection" hidden>
     <div class="admin-top">
       <div>
-        <h1 class="admin-page-title">รายชื่อลงทะเบียน</h1>
-        <p class="admin-page-sub">Digital Hospital Forum 2026 · อัปเดตล่าสุด <span id="lastRefresh">—</span></p>
+        <h1 class="admin-page-title" id="pageTitle">รายชื่อลงทะเบียน</h1>
+        <p class="admin-page-sub"><span id="pageSubtitle">Digital Hospital Forum 2026</span> · อัปเดตล่าสุด <span id="lastRefresh">—</span></p>
       </div>
       <div class="admin-actions">
         <button type="button" id="refreshBtn" class="btn-admin-outline">↻ รีเฟรช</button>
@@ -62,7 +60,12 @@
       </div>
     </div>
 
-    <div class="admin-stats">
+    <div class="admin-tabs" role="tablist">
+      <button type="button" class="admin-tab active" data-tab="forum" role="tab" aria-selected="true">Forum 2026</button>
+      <button type="button" class="admin-tab" data-tab="trial" role="tab" aria-selected="false">ทดลองใช้งาน</button>
+    </div>
+
+    <div class="admin-stats" id="forumStats">
       <div class="admin-stat-card">
         <span class="admin-stat-num" id="statTotal">0</span>
         <span class="admin-stat-lbl">ลงทะเบียนทั้งหมด</span>
@@ -81,28 +84,34 @@
       </div>
     </div>
 
+    <div class="admin-stats" id="trialStats" hidden>
+      <div class="admin-stat-card">
+        <span class="admin-stat-num" id="trialStatTotal">0</span>
+        <span class="admin-stat-lbl">คำขอทั้งหมด</span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-num" id="trialStatUrgent">0</span>
+        <span class="admin-stat-lbl">เร่งด่วนมาก</span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-num" id="trialStatClaim">0</span>
+        <span class="admin-stat-lbl">ตรวจสอบเวชระเบียน</span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-num" id="trialStatIcd">0</span>
+        <span class="admin-stat-lbl">ค้นหารหัส ICD</span>
+      </div>
+    </div>
+
     <div class="admin-toolbar">
-      <input type="search" id="searchInput" class="form-input admin-search" placeholder="ค้นหา ชื่อ, อีเมล, หน่วยงาน..." />
+      <input type="search" id="searchInput" class="form-input admin-search" placeholder="ค้นหา ชื่อ, อีเมล, หน่วยงาน, รหัส รพ...." />
     </div>
 
     <div id="loadError" class="form-alert form-alert--error" hidden role="alert"></div>
 
     <div class="admin-table-wrap">
       <table class="admin-table" id="regTable">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>วันที่ลงทะเบียน</th>
-            <th>ชื่อ-นามสกุล</th>
-            <th>อีเมล</th>
-            <th>เบอร์โทร</th>
-            <th>หน่วยงาน</th>
-            <th>ตำแหน่ง</th>
-            <th>วันเข้าร่วม</th>
-            <th>Notebook</th>
-            <th>หมายเหตุ</th>
-          </tr>
-        </thead>
+        <thead id="regTableHead"></thead>
         <tbody id="regTableBody">
           <tr><td colspan="10" class="admin-empty">กำลังโหลด...</td></tr>
         </tbody>

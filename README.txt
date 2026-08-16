@@ -45,14 +45,17 @@ commit-website/
 2. รันไฟล์ supabase/setup_forum_registrations.sql
 3. แก้ไข js/config.js ใส่ SUPABASE_URL และ SUPABASE_ANON_KEY
    (หาได้ที่ Project Settings → API)
-4. เปิดหน้า register.html เพื่อทดสอบฟอร์ม
-5. ดูข้อมูลลงทะเบียนได้ที่ Table Editor → forum_registrations
+4. เปิดหน้า register.html เพื่อทดสอบฟอร์ม Forum (ขณะนี้ปิดรับชั่วคราว)
+5. เปิดหน้า trial.html เพื่อทดสอบฟอร์มทดลองใช้งาน
+6. รันไฟล์ supabase/setup_trial_registrations.sql สำหรับตารางทดลองใช้งาน
+7. ดูข้อมูลได้ที่ Table Editor หรือหน้า admin.html
 
 หน้า Admin
 ----------
-1. รันไฟล์ supabase/admin_rls_policy.sql (แก้ email admin ในไฟล์ก่อน)
+1. รันไฟล์ supabase/admin_rls_policy.sql และ setup_trial_registrations.sql
+   (แก้ email admin ในไฟล์ก่อน)
 2. สร้าง user admin: Dashboard → Authentication → Users → Add user
-3. เปิด admin.html → login → ดูรายชื่อ + Export Excel
+3. เปิด admin.html → login → สลับแท็บ Forum / ทดลองใช้งาน → Export Excel
 4. ไม่ใส่ลิงก์ admin ในเมนูหลัก (เก็บ URL เป็นความลับ)
 
 =========================================

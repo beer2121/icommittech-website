@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ลงทะเบียนทดลองใช้งาน | Commit Co., Ltd.</title>
+  <meta name="description" content="ลงทะเบียนทดลองใช้งานโปรแกรมของบริษัท คอมมิท จำกัด — Audit &amp; Claim AI, ICD Search และระบบอื่นๆ" />
+  <link rel="icon" type="image/png" href="img/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=Kanit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=6" />
+</head>
+<body class="register-page">
+
+<nav role="navigation" aria-label="Main Navigation">
+  <a href="index.html" class="logo">
+    <img src="img/logo.png" alt="Commit Co., Ltd." style="height:42px;width:auto;border-radius:8px;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">เกี่ยวกับเรา</a></li>
+    <li><a href="index.html#services">บริการ</a></li>
+    <li><a href="index.html#training">Training</a></li>
+    <li><a href="trial.html" class="active">ทดลองใช้งานฟรี</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta" style="text-decoration:none;display:inline-flex;align-items:center;">ติดต่อเรา</a>
+  <div class="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" aria-hidden="true">
+  <a href="index.html#about">เกี่ยวกับเรา</a>
+  <a href="index.html#services">บริการ</a>
+  <a href="index.html#training">Training</a>
+  <a href="trial.html">ทดลองใช้งานฟรี</a>
+  <a href="index.html#contact">ติดต่อเรา</a>
+</div>
+
+<main class="register-main">
+  <div class="register-hero">
+    <div class="sec-label">บริษัท คอมมิท จำกัด</div>
+    <h1 class="register-title">ลงทะเบียนทดลองใช้งานโปรแกรม</h1>
+    <p class="register-subtitle">
+      กรอกข้อมูลเพื่อขอทดลองใช้งานโปรแกรมของเรา<br />
+      ทีมงานจะติดต่อกลับเพื่อส่งสิทธิ์ทดลองใช้
+    </p>
+  </div>
+
+  <div id="formSuccess" class="form-alert form-alert--success" hidden>
+    <div class="form-alert-icon">✓</div>
+    <h2>ส่งคำขอสำเร็จ</h2>
+    <p>ขอบคุณที่สนใจทดลองใช้งานโปรแกรมของเรา ทีมงานจะติดต่อกลับทางอีเมลหรือเบอร์โทรที่ระบุไว้</p>
+    <a href="index.html" class="btn-primary" style="margin-top:16px;display:inline-block;">กลับหน้าหลัก</a>
+  </div>
+
+  <div id="formError" class="form-alert form-alert--error" hidden role="alert"></div>
+
+  <form id="trialForm" class="form-card" novalidate>
+    <div class="form-group">
+      <label for="organization">ชื่อหน่วยงาน <span class="req">*</span></label>
+      <input type="text" id="organization" name="organization" class="form-input" required placeholder="ชื่อโรงพยาบาล / หน่วยงาน" />
+    </div>
+
+    <div class="form-group">
+      <label for="hospital_code">รหัสโรงพยาบาล <span class="req">*</span></label>
+      <input type="text" id="hospital_code" name="hospital_code" class="form-input" required placeholder="เช่น รหัส รพ. ตาม สปสช. / รหัสภายใน" />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="full_name">ชื่อ-นามสกุล ผู้ติดต่อ <span class="req">*</span></label>
+        <input type="text" id="full_name" name="full_name" class="form-input" required autocomplete="name" placeholder="เช่น สมชาย ใจดี" />
+      </div>
+      <div class="form-group">
+        <label for="phone">เบอร์โทรศัพท์ติดต่อ <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" class="form-input" required autocomplete="tel" placeholder="08x-xxx-xxxx" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">อีเมลสำหรับติดต่อ <span class="req">*</span></label>
+      <input type="email" id="email" name="email" class="form-input" required autocomplete="email" placeholder="name@hospital.go.th" />
+    </div>
+
+    <div class="form-group">
+      <label for="business_type">ประเภทธุรกิจของหน่วยงานท่าน <span class="req">*</span></label>
+      <select id="business_type" name="business_type" class="form-input" required>
+        <option value="">— เลือกประเภท —</option>
+        <option value="เอกชน/บริษัท">เอกชน/บริษัท</option>
+        <option value="ราชการ/รัฐวิสาหกิจ">ราชการ/รัฐวิสาหกิจ</option>
+        <option value="สถาบันการศึกษา">สถาบันการศึกษา</option>
+        <option value="องค์กรไม่แสวงหาผลกำไร">องค์กรไม่แสวงหาผลกำไร</option>
+        <option value="อื่น ๆ">อื่น ๆ</option>
+      </select>
+    </div>
+    <div class="form-group" id="businessTypeOtherWrap" hidden>
+      <label for="business_type_other">ระบุประเภทอื่นๆ</label>
+      <input type="text" id="business_type_other" name="business_type_other" class="form-input" placeholder="ระบุประเภทหน่วยงาน" />
+    </div>
+
+    <div class="form-group">
+      <label for="referral_source">ท่านทราบข่าวการทดลองใช้งานโปรแกรมจากช่องทางใด? <span class="req">*</span></label>
+      <select id="referral_source" name="referral_source" class="form-input" required>
+        <option value="">— เลือกช่องทาง —</option>
+        <option value="เว็บไซต์บริษัท">เว็บไซต์บริษัท</option>
+        <option value="สื่อสังคมออนไลน์ (Social Media)">สื่อสังคมออนไลน์ (Social Media)</option>
+        <option value="อีเมล/จดหมายข่าว">อีเมล/จดหมายข่าว</option>
+        <option value="คำแนะนำจากบุคคล">คำแนะนำจากบุคคล</option>
+        <option value="โฆษณา/งานอีเวนต์">โฆษณา/งานอีเวนต์</option>
+        <option value="Other">อื่นๆ</option>
+      </select>
+    </div>
+    <div class="form-group" id="referralOtherWrap" hidden>
+      <label for="referral_source_other">ระบุช่องทางอื่นๆ</label>
+      <input type="text" id="referral_source_other" name="referral_source_other" class="form-input" placeholder="ระบุช่องทาง" />
+    </div>
+
+    <div class="form-group">
+      <label for="product_interest">ท่านสนใจทดลองใช้งานโปรแกรมประเภทใด? <span class="req">*</span></label>
+      <select id="product_interest" name="product_interest" class="form-input" required>
+        <option value="">— เลือกโปรแกรม —</option>
+        <option value="ระบบค้นหารหัส ICD สำหรับหน่วยงานสาธารณสุข">ระบบค้นหารหัส ICD สำหรับหน่วยงานสาธารณสุข</option>
+        <option value="ตรวจสอบเวชระเบียน">ตรวจสอบเวชระเบียน</option>
+        <option value="ระบบบริหารโรงเรียน">ระบบบริหารโรงเรียน</option>
+        <option value="ระบบสหกรณ์ออมทรัพย์ฯ">ระบบสหกรณ์ออมทรัพย์ฯ</option>
+        <option value="Other">อื่นๆ</option>
+      </select>
+    </div>
+    <div class="form-group" id="productOtherWrap" hidden>
+      <label for="product_interest_other">ระบุโปรแกรมอื่นๆ</label>
+      <input type="text" id="product_interest_other" name="product_interest_other" class="form-input" placeholder="ระบุชื่อโปรแกรม" />
+    </div>
+
+    <div class="form-group">
+      <label for="urgency">ความเร่งด่วนในการนำโปรแกรมไปใช้งานของท่านอยู่ในระดับใด? <span class="req">*</span></label>
+      <select id="urgency" name="urgency" class="form-input" required>
+        <option value="">— เลือกระดับความเร่งด่วน —</option>
+        <option value="เร่งด่วนมาก (ภายใน 1 เดือน)">เร่งด่วนมาก (ภายใน 1 เดือน)</option>
+        <option value="เร่งด่วน (1-3 เดือน)">เร่งด่วน (1-3 เดือน)</option>
+        <option value="ปานกลาง (3-6 เดือน)">ปานกลาง (3-6 เดือน)</option>
+        <option value="ยังไม่มีกำหนดการที่แน่นอน">ยังไม่มีกำหนดการที่แน่นอน</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="notes">ท่านมีข้อสงสัยหรือข้อกำหนดเฉพาะเจาะจงใด ๆ ที่ต้องการสอบถามเกี่ยวกับการทดลองใช้งานหรือไม่?</label>
+      <textarea id="notes" name="notes" class="form-input form-textarea" rows="3" placeholder="ข้อความเพิ่มเติม (ถ้ามี)"></textarea>
+    </div>
+
+    <div class="form-footer">
+      <button type="submit" id="submitBtn" class="btn-primary btn-submit">ส่งคำขอทดลองใช้งาน</button>
+      <p class="form-privacy">ข้อมูลของท่านจะถูกเก็บอย่างปลอดภัยและใช้เพื่อการติดต่อกลับเท่านั้น</p>
+    </div>
+  </form>
+</main>
+
+<footer class="register-footer">
+  <p>© 2025 บริษัท คอมมิท จำกัด · <a href="index.html">กลับหน้าหลัก</a></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/trial.js"></script>
+</body>
+</html>
